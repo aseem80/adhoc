@@ -12,7 +12,7 @@ public class ZeroOrOneEditAway {
     public static void main(String args[]) {
 
         String sample1 = "pale";
-        String sample2 = "bake";
+        String sample2 = "pake";
         System.out.println(isZeroOrOneEdit(sample1, sample2));
 
 

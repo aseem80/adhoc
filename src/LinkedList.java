@@ -43,6 +43,26 @@ public class LinkedList<T extends Comparable> implements List<T> {
         return null;
     }
 
+
+    public boolean addNew(T t) {
+        LinkedListNode<T> newNode = new LinkedListNode<>(t);
+        size++;
+        if(head==null) {
+            head = newNode;
+        } else {
+            LinkedListNode<T> current = head;
+            while(current.getNext()!=null) {
+                current = head.getNext();
+            }
+            current.setNext(newNode);
+        }
+        newNode.setPrev(tail);
+        tail = newNode;
+        return true;
+
+    }
+
+
     @Override
     public boolean add(T t) {
         LinkedListNode<T> node = new LinkedListNode<>(t);
@@ -50,11 +70,13 @@ public class LinkedList<T extends Comparable> implements List<T> {
             this.head = node;
         } else {
             LinkedListNode<T> nextNode = this.head.getNext();
-            while(nextNode.getNext()!=null) {
+            LinkedListNode<T> currentNode = nextNode;
+            while(nextNode!=null) {
+                currentNode = nextNode;
                 nextNode = nextNode.getNext();
             }
-            nextNode.setNext(node);
-            node.setPrev(nextNode);
+            currentNode.setNext(node);
+            currentNode.setPrev(nextNode);
         }
         size++;
         return true;
@@ -62,7 +84,28 @@ public class LinkedList<T extends Comparable> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+
+        boolean found = false;
+        if(head==null) {
+            return false;
+        } else {
+            LinkedListNode<T> current = head;
+            if(o.equals(head.getData())) {
+                head = head.getNext();
+                return true;
+            } else {
+                while (current.getNext() != null) {
+                    if (o.equals(current.getNext().getData())) {
+                        current.setNext(current.getNext().getNext());
+                        found = true;
+                    }
+                    current = current.getNext();
+                }
+
+                return found;
+            }
+        }
+
     }
 
     @Override

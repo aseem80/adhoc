@@ -13,13 +13,15 @@ public class DesignPath {
         boolean[][] a = new boolean[5][6];
         for(int r = 0 ; r < 5; r++) {
             for(int c=0; c < 6; c++) {
-                a[r][c] = true;
+                a[r][c] = false;
             }
         }
         a[0][0] = true;
+        a[1][1] = true;
+        a[2][2] = true;
+        a[3][3] = true;
+        a[4][4] = true;
         a[4][5] = true;
-        a[3][5] = true;
-        a[0][1] = true;
         for(int r = 0 ; r < 5; r++) {
             for(int c=0; c < 6; c++) {
                 if(c!=0) {
@@ -49,7 +51,7 @@ public class DesignPath {
         }
 
         boolean isAtOrigin = (row==0) && (column==0);
-        if(isAtOrigin || findPath(a, paths, row-1, column) || findPath(a, paths, row, column-1)) {
+        if(isAtOrigin || findPath(a, paths, row-1, column) || findPath(a, paths, row, column-1) ||  findPath(a, paths, row-1, column-1)) {
             Path path = new Path(row, column);
             paths.add(path);
             return true;

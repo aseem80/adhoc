@@ -12,18 +12,6 @@ public class FindSubStringPermutaionsInLongString {
         String longString = "cbabadcbbabbcbabaabccbabc";
         String searchString = "abbc";
         char[] lc = longString.toCharArray();
-        Map<Character, Integer> sMap = new HashMap<>();
-        for(char c : searchString.toCharArray()) {
-            Integer occurrence = sMap.get(c);
-            if(occurrence==null) {
-                sMap.put( c, 1 );
-            } else {
-                occurrence++;
-                sMap.put( c, occurrence );
-            }
-        }
-
-
         for(int i = 0; i < lc.length; i++) {
             int endIndex = i + searchString.length();
             if(endIndex < lc.length) {
@@ -33,24 +21,14 @@ public class FindSubStringPermutaionsInLongString {
 
                 }
             }
-
-
-
         }
-
-
-
     }
 
     private static int getSignature(char[] c) {
         int sum = 0;
         for(char a : c) {
             sum = sum + a;
-
         }
         return sum;
-
-
-
     }
 }

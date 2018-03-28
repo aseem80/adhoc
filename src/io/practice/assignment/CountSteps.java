@@ -18,7 +18,7 @@ public class CountSteps {
         } else if(n==1) {
             return 1;
         } else {
-            return countWays( n - 3 ) + countWays( n - 2 ) + countWays( n - 2 );
+            return countWays( n - 3 ) + countWays( n - 2 ) + countWays( n - 1);
         }
     }
 }

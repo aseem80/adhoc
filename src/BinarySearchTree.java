@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Created by aseem80 on 2/1/17.
@@ -18,16 +19,23 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     public void addElement(T data) {
         BSTNode<T> newNode = new BSTNode<T>( data );
-
-        if (root.data.compareTo( data ) < 0) {
-            insert( root, newNode );
-        }
-        else {
-            insert( root, newNode );
-        }
-
+        insert( root, newNode );
     }
 
+
+
+    public void insertAgain(BSTNode<T> node, BSTNode<T> newNode) {
+        if(node==null) {
+            node = newNode;
+            return;
+        } else {
+            if(newNode.getData().compareTo(node.getData()) < 0) {
+                insertAgain(node.getLeft(), newNode);
+            } else{
+                insertAgain(node.getRight(), newNode);
+            }
+        }
+    }
 
     public void insert(BSTNode<T> node, BSTNode<T> newNode) {
         T data = newNode.getData( );
@@ -81,14 +89,41 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
+
+
     public void collectAllElements(List<T> collection, BSTNode<T> startNode) {
         if (startNode != null) {
-            collectAllElements( collection, startNode.getLeft( ) );
-            collection.add( startNode.getData( ) );
-            collectAllElements( collection, startNode.getRight( ) );
+            collectAllElements(collection, startNode.getLeft());
+            collection.add(startNode.getData());
+            collectAllElements(collection, startNode.getRight());
         }
-
-
-
     }
+
+    public void collectAllElementsBreadthWise(List<T> collection, BSTNode<T> startNode) {
+        java.util.LinkedList<BSTNode<T>> queue = new java.util.LinkedList<BSTNode<T>>();
+        queue.add(startNode);
+        while(!queue.isEmpty()) {
+            BSTNode<T> currentNode = queue.poll();
+            collection.add(currentNode.getData());
+            if(currentNode.getLeft()!=null) {
+                queue.add(currentNode.getLeft());
+            }
+            if(currentNode.getRight()!=null) {
+                queue.add(currentNode.getRight());
+            }
+        }
+    }
+
+    public int getHeight(BSTNode<T> startNode) {
+        if (startNode == null) {
+            return 0;
+        }
+        int lHeight = getHeight(startNode.getLeft()) + 1;
+        int rHeight = getHeight(startNode.getRight()) + 1;
+        return Math.max(lHeight,rHeight);
+    }
+
+
+
+
 }

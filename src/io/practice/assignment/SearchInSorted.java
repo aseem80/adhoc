@@ -18,6 +18,32 @@ public class SearchInSorted {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void findMagicIndex(int a[], int low, int high, List<Integer> result) {
         int median = (low+high)/2;
         if(a[median] == median){

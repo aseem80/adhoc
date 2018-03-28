@@ -4,16 +4,16 @@
 public class StringCompress {
 
     public static void main(String args[]) {
-        String originalString = "AAabbcccccddeeeeeeeeFFFFFFFFAAASS";
+        String originalString = "AAabbcccccddeeeeeeeeFFFFFFFFAAASSP";
         StringBuilder compressedString = new StringBuilder();
         int counter = 1;
         boolean incrementedOnce = false;
-        for(int index = 1; index < originalString.length(); index++) {
-            if(originalString.charAt( index )==originalString.charAt( index - 1  )) {
+        for(int index = 0; index < originalString.length()-1; index++) {
+            if(originalString.charAt( index )==originalString.charAt( index + 1  )) {
                 counter++;
                 incrementedOnce = true;
             } else {
-                compressedString.append(originalString.charAt( index - 1 )  ).append( counter );
+                compressedString.append(originalString.charAt( index)  ).append( counter );
                 counter = 1;
             }
         }
